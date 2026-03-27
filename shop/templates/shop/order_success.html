@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmed - JUSA & CHACHA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; text-align: center; padding: 50px; background: #f4f7f6; }
+        .card { background: white; padding: 40px; border-radius: 20px; display: inline-block; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 500px; }
+        .check { font-size: 50px; color: #25D366; }
+        .btn-wa { background: #25D366; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; display: block; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="check">✔</div>
+        <h1>Order Placed!</h1>
+        <p>Aapka Order ID **#{{ order.id }}** database mein save ho gaya hai.</p>
+        <p style="color: #666;">Ab aakhri step: Niche button par click karke humein WhatsApp par message bhejein taake hum order confirm kar saken.</p>
+        
+        <a href="https://wa.me/923105631656?text=Hi, my Order ID is {{ order.id }}. Please confirm my order for {{ order.product.name }}." class="btn-wa">
+            CONTINUE TO WHATSAPP
+        </a>
+        <br>
+        <a href="/" style="color: #002366; text-decoration: none; font-size: 0.9rem;">Back to Home</a>
+    </div>
+</body>
+</html>
