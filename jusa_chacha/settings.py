@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # --- SERVER & SECURITY SETTINGS ---
 SECRET_KEY = 'django-insecure-apki-purani-key-yahan-honi-chahiye'
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'armankhan125.pythonanywhere.com'] # Hosting URL add kar di
 ROOT_URLCONF = 'jusa_chacha.urls'
 
 # --- APPLICATION DEFINITION ---
@@ -68,13 +68,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# --- JAZZMIN SETTINGS (Optimized for Visibility) ---
+# --- JAZZMIN SETTINGS (Mobile & UI Optimized) ---
 JAZZMIN_SETTINGS = {
     "site_title": "Jusa & Chacha Admin",
     "site_header": "JUSA & CHACHA",
     "site_brand": "JUSA & CHACHA",
     
-    # Force Top Menu and User Menu
+    # MOBILE FIX: Ye mobile par top menu enable karta hai
     "show_topmenu": True,
     "show_ui_builder": False,
     
@@ -86,13 +86,17 @@ JAZZMIN_SETTINGS = {
     "topmenu_links": [
         {"name": "View Website", "url": "/", "new_window": True},
         {"model": "shop.Order"},
+        {"model": "shop.Product"}, # Taake direct product pe ja sakein
     ],
 
     "welcome_sign": "Welcome to Jusa & Chacha Control Panel",
     "copyright": "Jusa & Chacha Ltd",
     "search_model": ["shop.Product", "shop.Order"],
+    
+    # MOBILE VIEW OPTIMIZATION
     "show_sidebar": True,
-    "navigation_expanded": True,
+    "navigation_expanded": True, # Mobile par menu hamesha available rahega
+    
     "order_with_respect_to": ["shop.Order", "shop.Product", "shop.Category", "shop.Review"],
     
     "icons": {
@@ -103,7 +107,7 @@ JAZZMIN_SETTINGS = {
         "shop.Category": "fas fa-list",
         "shop.Review": "fas fa-star",
         "shop.View Sales Report": "fas fa-chart-line",
-        "shop.Go to Website": "fas fa-external-link-alt", # Sidebar icon
+        "shop.Go to Website": "fas fa-external-link-alt",
     },
     
     "custom_links": {
@@ -126,7 +130,7 @@ JAZZMIN_SETTINGS = {
     "use_google_fonts_cdn": True,
 }
 
-# --- UI TWEAKS ---
+# --- UI TWEAKS (For Better Mobile View) ---
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,
     "footer_small_text": False,
@@ -136,7 +140,7 @@ JAZZMIN_UI_TWEAKS = {
     "accent": "accent-primary",
     "navbar": "navbar-primary navbar-dark",
     "no_navbar_border": False,
-    "navbar_fixed": False, # Changed to False to prevent hiding
+    "navbar_fixed": False, # Isse False rakha hai taake mobile par screen cover na ho
     "layout_boxed": False,
     "footer_fixed": False,
     "sidebar_fixed": True,
