@@ -7,7 +7,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # --- SERVER & SECURITY SETTINGS ---
 SECRET_KEY = 'django-insecure-apki-purani-key-yahan-honi-chahiye'
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'armankhan125.pythonanywhere.com'] # Hosting URL add kar di
+# Purani line:
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'armankhan125.pythonanywhere.com']
+
+# Nayi sahi line (Dono domains dal dein taake masla na ho):
+ALLOWED_HOSTS = [
+    '127.0.0.1', 
+    'localhost', 
+    'jusaandchacha.pythonanywhere.com', 
+    'armankhan125.pythonanywhere.com'
+]
 ROOT_URLCONF = 'jusa_chacha.urls'
 
 # --- APPLICATION DEFINITION ---
