@@ -10,14 +10,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background-color: #f4f7f6; color: #333; overflow-x: hidden; }
         
-        /* Navigation Bar Upgrade */
+        /* Navigation */
         nav { background: #002366; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; color: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .logo-text { font-weight: 800; font-size: 1.5rem; letter-spacing: 2px; color: white; text-decoration: none; }
         nav ul { list-style: none; display: flex; gap: 25px; align-items: center; }
         nav ul li a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
         nav ul li a:hover { color: #25D366; }
 
-        /* Hero Section */
+        /* Hero Section (Colors Fixed) */
         .hero { 
             background: linear-gradient(rgba(0,35,102,0.7), rgba(0,35,102,0.7)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1350&q=80'); 
             background-size: cover; background-position: center; 
@@ -30,93 +30,69 @@
         .trust-badges { display: flex; justify-content: center; gap: 40px; padding: 30px; background: white; flex-wrap: wrap; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .badge-item { text-align: center; max-width: 200px; }
         .badge-item h4 { color: #002366; font-size: 1rem; margin-bottom: 2px; }
-        .badge-item p { font-size: 0.75rem; color: #777; }
 
-        /* Search & Filter Upgrade */
+        /* Search & Filter */
         .filter-section { padding: 40px 5% 20px; text-align: center; background: #fff; }
         .search-container { max-width: 600px; margin: 0 auto 25px; display: flex; gap: 10px; }
-        .search-input { flex: 1; padding: 15px 25px; border: 2px solid #eee; border-radius: 50px; outline: none; font-size: 1rem; transition: 0.3s; }
-        .search-input:focus { border-color: #002366; }
+        .search-input { flex: 1; padding: 15px 25px; border: 2px solid #eee; border-radius: 50px; outline: none; font-size: 1rem; }
         .search-btn { background: #002366; color: white; border: none; padding: 0 30px; border-radius: 50px; cursor: pointer; font-weight: 600; }
 
-        .cat-btn { text-decoration: none; padding: 10px 25px; background: #f0f0f0; color: #555; border-radius: 50px; margin: 5px; display: inline-block; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
-        .cat-btn:hover, .cat-btn.active { background: #002366; color: white; transform: scale(1.05); }
+        .cat-btn { text-decoration: none; padding: 10px 25px; background: #f0f0f0; color: #555; border-radius: 50px; margin: 5px; display: inline-block; font-weight: 600; font-size: 0.85rem; }
+        .cat-btn:hover, .cat-btn.active { background: #002366; color: white; }
 
         /* Product Grid */
         .container { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px; padding: 0 20px; }
         .product-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.4s; position: relative; border: 1px solid #f0f0f0; }
-        .product-card:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         
         .img-wrapper { width: 100%; height: 380px; overflow: hidden; position: relative; }
-        .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
         .product-card:hover .product-img { transform: scale(1.08); }
 
-        /* Status Labels */
-        .sale-badge { position: absolute; top: 15px; right: 15px; background: #e63946; color: white; padding: 6px 14px; border-radius: 50px; font-weight: 800; font-size: 11px; z-index: 10; letter-spacing: 1px; }
-        .stock-badge { position: absolute; top: 15px; left: 15px; padding: 6px 12px; border-radius: 6px; font-size: 10px; font-weight: bold; z-index: 10; text-transform: uppercase; }
-        .low-stock-bg { background: rgba(230, 57, 70, 0.9); color: white; }
+        /* Badges Styling */
+        .sale-badge { position: absolute; top: 15px; right: 15px; background: #e63946; color: white; padding: 6px 14px; border-radius: 50px; font-weight: 800; font-size: 11px; z-index: 10; }
+        .stock-badge { position: absolute; top: 15px; left: 15px; padding: 6px 12px; border-radius: 6px; font-size: 10px; font-weight: bold; z-index: 10; background: rgba(230, 57, 70, 0.9); color: white; }
 
         .details { padding: 25px; text-align: center; }
         .details h3 { font-size: 1.1rem; margin-bottom: 10px; color: #333; height: 2.2em; overflow: hidden; }
-        .price-box { margin-bottom: 15px; }
         .current-price { color: #28a745; font-size: 1.4rem; font-weight: 800; }
         .old-price { color: #aaa; text-decoration: line-through; font-size: 0.95rem; margin-right: 8px; }
 
         .btn { background: #25D366; color: white; padding: 14px; text-decoration: none; border-radius: 12px; display: block; font-weight: 600; transition: 0.3s; border: none; width: 100%; text-align: center; }
-        .btn:hover { background: #128C7E; box-shadow: 0 5px 15px rgba(37,211,102,0.3); }
-        .btn-out { background: #eee; color: #888; cursor: not-allowed; }
+        .btn:hover { background: #128C7E; }
 
         /* Floating WhatsApp */
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 9999; text-decoration: none; box-shadow: 0 10px 25px rgba(37,211,102,0.4); transition: 0.3s; }
-        .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 9999; text-decoration: none; box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
 
-        /* Reviews Section */
+        /* Reviews Section (Fixed Colors) */
         .reviews-section { padding: 80px 5%; background: #002366; color: white; text-align: center; }
         .review-card { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 350px; }
 
         /* Footer */
         .main-footer { background: #00153d; color: #f0f0f0; padding: 60px 5% 30px; text-align: center; }
-        
-        /* --- MOBILE FIXES (Added for Arman) --- */
+
+        /* --- MOBILE FIXES --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 0.9rem; letter-spacing: 1px; }
-            
             nav { padding: 10px 15px; }
-            nav ul { display: none; } /* Mobile par menu chupa diya takay messy na lage */
-            
-            .search-container { flex-direction: row; gap: 5px; padding: 0 10px; }
+            .logo-text { font-size: 1.1rem; }
+            nav ul { gap: 10px; }
+            nav ul li a { font-size: 0.7rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .search-container { padding: 0 10px; gap: 5px; }
             .search-input { padding: 10px 15px; font-size: 0.8rem; }
             .search-btn { padding: 0 15px; font-size: 0.8rem; }
-            
-            /* Mobile par 2 products ek line mein */
-            .container { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 15px; 
-                padding: 0 10px; 
-                margin: 20px auto;
-            }
-            .img-wrapper { height: 220px; }
-            .details { padding: 15px 10px; }
-            .details h3 { font-size: 0.85rem; }
+            .container { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 10px; }
+            .img-wrapper { height: 180px; }
+            .details { padding: 15px 5px; }
+            .details h3 { font-size: 0.8rem; }
             .current-price { font-size: 1rem; }
-            .old-price { font-size: 0.75rem; }
             .btn { padding: 10px; font-size: 0.75rem; border-radius: 8px; }
-            
-            .trust-badges { gap: 15px; padding: 20px 10px; }
-            .badge-item { max-width: 140px; }
-            .badge-item h4 { font-size: 0.8rem; }
-            
-            .whatsapp-float { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/923105631656?text=Assalam o Alaikum, I need help regarding JUSA & CHACHA products." class="whatsapp-float" target="_blank">
-        <svg width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-        </svg>
+    <a href="https://wa.me/923105631656" class="whatsapp-float" target="_blank">
+        <svg width="35" height="35" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
     </a>
 
     <nav>
@@ -142,11 +118,10 @@
     <div class="filter-section">
         <div class="search-container">
             <form action="/" method="GET" style="display:contents;">
-                <input type="text" name="search" class="search-input" placeholder="Search products..." value="{{ request.GET.search|default:'' }}">
+                <input type="text" name="search" class="search-input" placeholder="What are you looking for today?" value="{{ request.GET.search|default:'' }}">
                 <button type="submit" class="search-btn">FIND</button>
             </form>
         </div>
-        
         <div class="category-wrapper">
             <a href="/" class="cat-btn {% if not request.GET.category %}active{% endif %}">ALL COLLECTIONS</a>
             {% for cat in categories %}
@@ -158,23 +133,11 @@
     <div class="container">
         {% for p in products %}
             <div class="product-card">
-                {% if p.discount_price %}
-                    <div class="sale-badge">SAVE ON SALE</div>
-                {% endif %}
-
-                {% if p.stock > 0 and p.stock <= 5 %}
-                    <div class="stock-badge low-stock-bg">HURRY! {{ p.stock }} LEFT</div>
-                {% endif %}
-
+                {% if p.discount_price %}<div class="sale-badge">SAVE ON SALE</div>{% endif %}
                 <a href="{% url 'product_detail' p.pk %}" style="text-decoration:none; color:inherit;">
                     <div class="img-wrapper">
-                        {% if p.image %}
-                            <img src="{{ p.image.url }}" alt="{{ p.name }}" class="product-img">
-                        {% else %}
-                            <div style="height: 100%; background: #eee; display:flex; align-items:center; justify-content:center; color:#ccc;">No Image</div>
-                        {% endif %}
+                        {% if p.image %}<img src="{{ p.image.url }}" class="product-img">{% endif %}
                     </div>
-                    
                     <div class="details">
                         <h3>{{ p.name }}</h3>
                         <div class="price-box">
@@ -185,24 +148,15 @@
                                 <span class="current-price">RS. {{ p.price }}</span>
                             {% endif %}
                         </div>
-
-                        {% if p.stock == 0 %}
-                            <button class="btn btn-out" disabled>SOLD OUT</button>
-                        {% else %}
-                            <span class="btn">VIEW DETAILS</span>
-                        {% endif %}
+                        <span class="btn">VIEW & BUY</span>
                     </div>
                 </a>
-            </div>
-        {% empty %}
-            <div style="grid-column: 1/-1; text-align: center; padding: 100px 0; opacity: 0.5;">
-                <h3>Oops! No items found.</h3>
             </div>
         {% endfor %}
     </div>
 
     <div class="reviews-section">
-        <h2 style="margin-bottom: 50px;">Trusted by 1000+ Customers</h2>
+        <h2 style="margin-bottom: 50px; font-size: 2.5rem;">Trusted by 1000+ Customers</h2>
         <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
             <div class="review-card">
                 <div style="color: #ffc107; margin-bottom: 15px;">★★★★★</div>
@@ -218,9 +172,7 @@
     </div>
 
     <footer class="main-footer">
-        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.8rem; color: #888;">
-            &copy; 2026 JUSA & CHACHA BRAND. Proudly Crafted by Arman Khan.
-        </div>
+        &copy; 2026 JUSA & CHACHA. Proudly Crafted by Arman Khan.
     </footer>
 
 </body>
