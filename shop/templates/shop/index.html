@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JUSA & CHACHA - Premium Wear</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -12,94 +14,77 @@
         
         /* Navigation */
         nav { background: #002366; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; color: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .logo-text { font-weight: 800; font-size: 1.5rem; letter-spacing: 2px; color: white; text-decoration: none; }
-        nav ul { list-style: none; display: flex; gap: 25px; align-items: center; }
-        nav ul li a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
+        .logo-text { font-weight: 800; font-size: 1.3rem; letter-spacing: 1px; color: white; text-decoration: none; }
+        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; margin-bottom: 0; }
+        nav ul li a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; font-size: 0.85rem; transition: 0.3s; text-transform: uppercase; }
         nav ul li a:hover { color: #25D366; }
 
-        /* Hero Section (Colors Fixed) */
+        /* Hero Section */
         .hero { 
             background: linear-gradient(rgba(0,35,102,0.7), rgba(0,35,102,0.7)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1350&q=80'); 
             background-size: cover; background-position: center; 
-            height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; 
+            height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 20px;
         }
-        .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 5px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
-        .hero p { font-size: 1.2rem; letter-spacing: 3px; font-weight: 300; opacity: 0.9; }
+        .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 5px; }
+        .hero p { font-size: 1rem; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
 
         /* Trust Badges */
-        .trust-badges { display: flex; justify-content: center; gap: 40px; padding: 30px; background: white; flex-wrap: wrap; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .badge-item { text-align: center; max-width: 200px; }
-        .badge-item h4 { color: #002366; font-size: 1rem; margin-bottom: 2px; }
+        .trust-badges { display: flex; justify-content: center; gap: 20px; padding: 20px; background: white; flex-wrap: wrap; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .badge-item { text-align: center; min-width: 140px; }
+        .badge-item h4 { color: #002366; font-size: 0.9rem; margin-bottom: 2px; font-weight: 700; }
+        .badge-item p { font-size: 0.7rem; color: #777; }
 
         /* Search & Filter */
-        .filter-section { padding: 40px 5% 20px; text-align: center; background: #fff; }
-        .search-container { max-width: 600px; margin: 0 auto 25px; display: flex; gap: 10px; }
-        .search-input { flex: 1; padding: 15px 25px; border: 2px solid #eee; border-radius: 50px; outline: none; font-size: 1rem; }
-        .search-btn { background: #002366; color: white; border: none; padding: 0 30px; border-radius: 50px; cursor: pointer; font-weight: 600; }
-
-        .cat-btn { text-decoration: none; padding: 10px 25px; background: #f0f0f0; color: #555; border-radius: 50px; margin: 5px; display: inline-block; font-weight: 600; font-size: 0.85rem; }
+        .filter-section { padding: 30px 5% 20px; text-align: center; background: #fff; }
+        .cat-btn { text-decoration: none; padding: 8px 18px; background: #f0f0f0; color: #555; border-radius: 50px; margin: 4px; display: inline-block; font-weight: 600; font-size: 0.75rem; transition: 0.3s; border: 1px solid transparent; }
         .cat-btn:hover, .cat-btn.active { background: #002366; color: white; }
 
-        /* Product Grid */
-        .container { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px; padding: 0 20px; }
-        .product-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.4s; position: relative; border: 1px solid #f0f0f0; }
+        /* Product Card */
+        .product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; border: 1px solid #eee; position: relative; }
+        .img-wrapper { width: 100%; height: 300px; overflow: hidden; position: relative; }
+        .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .product-card:hover .product-img { transform: scale(1.05); }
         
-        .img-wrapper { width: 100%; height: 380px; overflow: hidden; position: relative; }
-        .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        .product-card:hover .product-img { transform: scale(1.08); }
+        .details { padding: 15px; text-align: center; }
+        .details h3 { font-size: 0.95rem; font-weight: 600; height: 2.4em; overflow: hidden; margin-bottom: 10px; color: #333; }
+        .current-price { color: #28a745; font-size: 1.2rem; font-weight: 800; }
+        .old-price { color: #aaa; text-decoration: line-through; font-size: 0.85rem; margin-right: 5px; }
 
-        /* Badges Styling */
-        .sale-badge { position: absolute; top: 15px; right: 15px; background: #e63946; color: white; padding: 6px 14px; border-radius: 50px; font-weight: 800; font-size: 11px; z-index: 10; }
-        .stock-badge { position: absolute; top: 15px; left: 15px; padding: 6px 12px; border-radius: 6px; font-size: 10px; font-weight: bold; z-index: 10; background: rgba(230, 57, 70, 0.9); color: white; }
+        .btn-buy { background: #25D366; color: white; padding: 10px; border-radius: 8px; text-decoration: none; display: block; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
+        .btn-buy:hover { background: #128C7E; color: white; }
 
-        .details { padding: 25px; text-align: center; }
-        .details h3 { font-size: 1.1rem; margin-bottom: 10px; color: #333; height: 2.2em; overflow: hidden; }
-        .current-price { color: #28a745; font-size: 1.4rem; font-weight: 800; }
-        .old-price { color: #aaa; text-decoration: line-through; font-size: 0.95rem; margin-right: 8px; }
-
-        .btn { background: #25D366; color: white; padding: 14px; text-decoration: none; border-radius: 12px; display: block; font-weight: 600; transition: 0.3s; border: none; width: 100%; text-align: center; }
-        .btn:hover { background: #128C7E; }
+        /* Size Guide Button Styling */
+        .btn-size-guide { font-size: 0.7rem !important; font-weight: 600; border-radius: 8px; }
 
         /* Floating WhatsApp */
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 9999; text-decoration: none; box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); text-decoration: none; transition: 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); color: white; }
 
-        /* Reviews Section (Fixed Colors) */
-        .reviews-section { padding: 80px 5%; background: #002366; color: white; text-align: center; }
-        .review-card { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 350px; }
+        /* Reviews Section */
+        .reviews-section { padding: 60px 5%; background: #002366; color: white; text-align: center; }
+        .review-card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 350px; margin-bottom: 20px; }
 
-        /* Footer */
-        .main-footer { background: #00153d; color: #f0f0f0; padding: 60px 5% 30px; text-align: center; }
-
-        /* --- MOBILE FIXES --- */
+        /* Mobile specific fixes */
         @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
             nav { padding: 10px 15px; }
-            .logo-text { font-size: 1.1rem; }
             nav ul { gap: 10px; }
             nav ul li a { font-size: 0.7rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .search-container { padding: 0 10px; gap: 5px; }
-            .search-input { padding: 10px 15px; font-size: 0.8rem; }
-            .search-btn { padding: 0 15px; font-size: 0.8rem; }
-            .container { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 10px; }
-            .img-wrapper { height: 180px; }
-            .details { padding: 15px 5px; }
-            .details h3 { font-size: 0.8rem; }
-            .current-price { font-size: 1rem; }
-            .btn { padding: 10px; font-size: 0.75rem; border-radius: 8px; }
+            .img-wrapper { height: 220px; }
         }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/923105631656" class="whatsapp-float" target="_blank">
-        <svg width="35" height="35" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+    <a href="https://wa.me/923105631656?text=Assalam o Alaikum, I need help regarding JUSA & CHACHA products." class="whatsapp-float" target="_blank">
+        <svg width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
     </a>
 
     <nav>
         <a href="/" class="logo-text">JUSA & CHACHA</a>
         <ul>
-            <li><a href="/">New Arrivals</a></li>
-            <li><a href="{% url 'about' %}">Size Guide</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'about' %}">Sizes</a></li>
             <li><a href="/admin">Admin Login</a></li>
         </ul>
     </nav>
@@ -116,64 +101,136 @@
     </div>
 
     <div class="filter-section">
-        <div class="search-container">
-            <form action="/" method="GET" style="display:contents;">
-                <input type="text" name="search" class="search-input" placeholder="What are you looking for today?" value="{{ request.GET.search|default:'' }}">
-                <button type="submit" class="search-btn">FIND</button>
+        <div class="search-container container">
+            <form action="/" method="GET" class="input-group">
+                <input type="text" name="search" class="form-control border-2 px-3" placeholder="Search products..." value="{{ request.GET.search|default:'' }}" style="border-radius: 50px 0 0 50px;">
+                <button type="submit" class="btn btn-primary px-4" style="background:#002366; border:none; border-radius: 0 50px 50px 0;">FIND</button>
             </form>
         </div>
-        <div class="category-wrapper">
-            <a href="/" class="cat-btn {% if not request.GET.category %}active{% endif %}">ALL COLLECTIONS</a>
-            {% for cat in categories %}
-                <a href="/?category={{ cat.id }}" class="cat-btn {% if request.GET.category == cat.id|stringformat:'i' %}active{% endif %}">{{ cat.name|upper }}</a>
+        
+        <div class="container mt-2">
+            <div class="row row-cols-2 row-cols-md-auto g-2 justify-content-center">
+                <div class="col">
+                    <a href="/" class="cat-btn w-100 m-0 {% if not request.GET.category %}active{% endif %}">ALL</a>
+                </div>
+                {% for cat in categories %}
+                <div class="col">
+                    <a href="/?category={{ cat.id }}" class="cat-btn w-100 m-0 {% if request.GET.category == cat.id|stringformat:'i' %}active{% endif %}">{{ cat.name|upper }}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-4">
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+            {% for p in products %}
+            <div class="col">
+                <div class="product-card">
+                    {% if p.discount_price %}
+                        <span class="badge bg-danger position-absolute top-0 end-0 m-2" style="font-size: 0.6rem; z-index: 5;">SALE</span>
+                    {% endif %}
+                    
+                    {% if p.stock > 0 and p.stock <= 5 %}
+                        <div class="position-absolute top-0 start-0 m-2 badge bg-warning text-dark" style="font-size: 0.5rem; z-index: 5;">ONLY {{ p.stock }} LEFT</div>
+                    {% endif %}
+
+                    <a href="{% url 'product_detail' p.pk %}" class="text-decoration-none text-dark">
+                        <div class="img-wrapper">
+                            {% if p.image %}
+                                <img src="{{ p.image.url }}" alt="{{ p.name }}" class="product-img">
+                            {% else %}
+                                <div class="h-100 bg-light d-flex align-items-center justify-content-center text-muted">No Image</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="details">
+                            <h3>{{ p.name }}</h3>
+                            <div class="mb-2">
+                                {% if p.discount_price %}
+                                    <span class="old-price text-muted small">RS. {{ p.price }}</span>
+                                    <span class="current-price">RS. {{ p.discount_price }}</span>
+                                {% else %}
+                                    <span class="current-price">RS. {{ p.price }}</span>
+                                {% endif %}
+                            </div>
+
+                            {% if p.stock == 0 %}
+                                <button class="btn btn-light w-100 btn-sm disabled" style="font-size:0.7rem;">SOLD OUT</button>
+                            {% else %}
+                                <button type="button" class="btn btn-outline-secondary w-100 my-2 btn-size-guide" data-bs-toggle="modal" data-bs-target="#sizeGuideModal">
+                                    📏 SIZE GUIDE
+                                </button>
+                                <span class="btn-buy">VIEW & BUY</span>
+                            {% endif %}
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5 opacity-50">
+                <h3>No items found.</h3>
+            </div>
             {% endfor %}
         </div>
     </div>
 
-    <div class="container">
-        {% for p in products %}
-            <div class="product-card">
-                {% if p.discount_price %}<div class="sale-badge">SAVE ON SALE</div>{% endif %}
-                <a href="{% url 'product_detail' p.pk %}" style="text-decoration:none; color:inherit;">
-                    <div class="img-wrapper">
-                        {% if p.image %}<img src="{{ p.image.url }}" class="product-img">{% endif %}
-                    </div>
-                    <div class="details">
-                        <h3>{{ p.name }}</h3>
-                        <div class="price-box">
-                            {% if p.discount_price %}
-                                <span class="old-price">RS. {{ p.price }}</span>
-                                <span class="current-price">RS. {{ p.discount_price }}</span>
-                            {% else %}
-                                <span class="current-price">RS. {{ p.price }}</span>
-                            {% endif %}
-                        </div>
-                        <span class="btn">VIEW & BUY</span>
-                    </div>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
-
     <div class="reviews-section">
-        <h2 style="margin-bottom: 50px; font-size: 2.5rem;">Trusted by 1000+ Customers</h2>
-        <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
+        <h2 class="mb-5" style="font-weight: 800;">Trusted by 1000+ Customers</h2>
+        <div class="d-flex justify-content-center gap-4 flex-wrap">
             <div class="review-card">
-                <div style="color: #ffc107; margin-bottom: 15px;">★★★★★</div>
-                <p>"The fabric quality is exactly like high-end brands."</p>
-                <h5 style="margin-top:20px; color:#25D366;">- Omar Khalid, Islamabad</h5>
+                <div class="text-warning mb-2">★★★★★</div>
+                <p class="small">"The fabric quality is exactly like high-end brands. Highly impressed!"</p>
+                <h6 class="mt-3 text-success">- Omar Khalid, Islamabad</h6>
             </div>
             <div class="review-card">
-                <div style="color: #ffc107; margin-bottom: 15px;">★★★★★</div>
-                <p>"Fastest delivery I've ever experienced in Pakistan."</p>
-                <h5 style="margin-top:20px; color:#25D366;">- Sara Ahmed, Lahore</h5>
+                <div class="text-warning mb-2">★★★★★</div>
+                <p class="small">"Fastest delivery I've ever experienced in Pakistan. Highly recommended."</p>
+                <h6 class="mt-3 text-success">- Sara Ahmed, Lahore</h6>
             </div>
         </div>
     </div>
 
-    <footer class="main-footer">
-        &copy; 2026 JUSA & CHACHA. Proudly Crafted by Arman Khan.
+    <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="sizeGuideModalLabel">📏 Official Size Guide</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>Please check your measurements before ordering.</p>
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Size</th>
+                        <th>Chest (in)</th>
+                        <th>Length (in)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>S</td><td>19</td><td>27</td></tr>
+                    <tr><td>M</td><td>20</td><td>28</td></tr>
+                    <tr><td>L</td><td>21</td><td>29</td></tr>
+                    <tr><td>XL</td><td>22</td><td>30</td></tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white py-5 text-center">
+        <div class="container">
+            <h3 class="mb-3">JUSA & CHACHA</h3>
+            <p class="small opacity-75 mb-4">Pakistan's Premium Export Quality Wear.</p>
+            <div class="border-top border-secondary pt-3 mt-3 opacity-50 small">
+                &copy; 2026 JUSA & CHACHA BRAND. Proudly Crafted by Arman Khan.
+            </div>
+        </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
