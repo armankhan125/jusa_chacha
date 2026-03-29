@@ -93,7 +93,20 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="{% url 'about' %}">Sizes</a></li>
-            <li><a href="/admin">Admin Login</a></li>
+            
+            {% if user.is_authenticated %}
+                <li><a href="/admin" style="color: #ffc107;">Dashboard</a></li>
+                <li>
+                    <form action="{% url 'logout' %}" method="post" style="display:inline; margin:0; padding:0;">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.8); font-weight:500; font-size:0.85rem; text-transform:uppercase; cursor:pointer; font-family: 'Poppins', sans-serif;">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            {% else %}
+                <li><a href="/admin">Admin Login</a></li>
+            {% endif %}
         </ul>
     </nav>
 
@@ -243,7 +256,7 @@
             <div>
                 <h4 style="color: white; margin-bottom: 20px; font-weight: 600;">Customer Support</h4>
                 <div style="font-size: 0.9rem; line-height: 2; opacity: 0.8; color: #ddd;">
-                    <p>📧 Email: support@jusa-chacha.com</p>
+                    <p>📧 Email: jusaandchacha@gmail.com</p>
                     <p>📞 Phone: +92 310 5631656</p>
                     <p>📍 Location: Islamabad, Pakistan</p>
                 </div>
@@ -251,7 +264,7 @@
         </div>
         
         <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px; padding-top: 25px; font-size: 0.85rem; color: #777; text-align: center; letter-spacing: 0.5px;">
-            &copy; 2026 **JUSA & CHACHA** BRAND. Proudly Crafted by **Arman Khan**.
+            &copy; 2026 "JUSA & CHACHA" BRAND. Proudly Crafted by "Arman Khan".
         </div>
     </footer>
 
