@@ -1,9 +1,9 @@
 from django.contrib import admin
-from django.urls import path, include # 'include' add kiya
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-# Naya signup view import kiya
-from shop.views import product_list, product_detail, about, signup_view 
+# Views import ho rahe hain
+from shop.views import product_list, product_detail, about 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,13 +16,6 @@ urlpatterns = [
     
     # About Us aur Size Guide page
     path('about/', about, name='about'), 
-
-    # --- NAYE AUTH PATHS ---
-    # Is se Login aur Logout ke raste khud ban jayenge
-    path('accounts/', include('django.contrib.auth.urls')), 
-    
-    # Is se naya account banane ka rasta banega
-    path('signup/', signup_view, name='signup'),
 ]
 
 # Media aur Static files ki setting (Images aur CSS ke liye)

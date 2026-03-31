@@ -1,12 +1,6 @@
 from django.contrib import admin
-from .models import Product, Category, ProductImage, Order, Review, HomeSlider, ProductColor, Newsletter
+from .models import Product, Category, ProductImage, Order, Review
 from django.db.models import Sum
-
-# --- Product Colors (Inline) ---
-class ProductColorInline(admin.TabularInline):
-    model = ProductColor
-    extra = 2
-    fields = ['color_name', 'color_code']
 
 # --- Gallery images (Product Inline) ---
 class ProductImageInline(admin.TabularInline):
@@ -25,8 +19,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'price', 'stock', 'is_featured')
     list_filter = ('category', 'is_featured')
     search_fields = ('name', 'description')
-    # Ab Gallery aur Colors dono aik hi page par nazar ayenge
-    inlines = [ProductImageInline, ProductColorInline]
+    inlines = [ProductImageInline]
 
     fieldsets = (
         ('Basic Information', {
@@ -40,19 +33,6 @@ class ProductAdmin(admin.ModelAdmin):
             'description': 'Tick those sizes which are currently in stock.'
         }),
     )
-
-# --- Home Page Slider Management ---
-@admin.register(HomeSlider)
-class HomeSliderAdmin(admin.ModelAdmin):
-    list_display = ('title', 'is_active')
-    list_editable = ('is_active',)
-
-# --- Newsletter Management ---
-@admin.register(Newsletter)
-class NewsletterAdmin(admin.ModelAdmin):
-    list_display = ('email', 'subscribed_at')
-    search_fields = ('email',)
-    readonly_fields = ('subscribed_at',)
 
 # --- Detailed Order Management with Stats ---
 @admin.register(Order)
@@ -73,14 +53,16 @@ class OrderAdmin(admin.ModelAdmin):
         }),
     )
 
+    # --- Dashboard Widgets Logic ---
     def changelist_view(self, request, extra_context=None):
+        # Stats Calculate karna
         total_orders = Order.objects.count()
-        # "Delivered" ya "Confirmed" status ke mutabiq sales calculate karein
-        total_sales = Order.objects.filter(status='Delivered').aggregate(Sum('total_price'))['total_price__sum'] or 0
+        # Sirf 'Completed' orders ka total sum nikalna
+        total_sales = Order.objects.filter(status='Completed').aggregate(Sum('total_price'))['total_price__sum'] or 0
         pending_orders = Order.objects.filter(status='Pending').count()
 
         extra_context = extra_context or {}
-        extra_context['show_widgets'] = True 
+        extra_context['show_widgets'] = True # Jazzmin widgets active karne ke liye
         extra_context['total_orders'] = total_orders
         extra_context['total_sales'] = f"Rs. {total_sales}"
         extra_context['pending_orders'] = pending_orders

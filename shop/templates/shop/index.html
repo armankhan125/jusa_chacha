@@ -20,11 +20,14 @@
         nav ul li a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; font-size: 0.85rem; transition: 0.3s; text-transform: uppercase; }
         nav ul li a:hover { color: #25D366; }
 
-        /* Slider Styles */
-        .carousel-item { height: 45vh; min-height: 300px; background-color: #002366; }
-        .carousel-item img { object-fit: cover; height: 100%; width: 100%; opacity: 0.8; }
-        .carousel-caption { bottom: 20%; z-index: 10; }
-        .carousel-caption h1 { font-size: 2.8rem; font-weight: 800; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(rgba(0,35,102,0.7), rgba(0,35,102,0.7)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1350&q=80'); 
+            background-size: cover; background-position: center; 
+            height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 20px;
+        }
+        .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 5px; }
+        .hero p { font-size: 1rem; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
 
         /* Trust Badges */
         .trust-badges { display: flex; justify-content: center; gap: 20px; padding: 20px; background: white; flex-wrap: wrap; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
@@ -53,15 +56,29 @@
 
         /* Floating WhatsApp */
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); text-decoration: none; transition: 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); color: white; }
+
+        /* Reviews Section */
+        .reviews-section { padding: 80px 5%; background: #002366; color: white; text-align: center; }
+        .review-card { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 350px; display: inline-block; margin: 10px; }
 
         /* Footer */
-        .main-footer { background: #00153d !important; color: #f0f0f0 !important; padding: 80px 5% 40px !important; width: 100% !important; clear: both; }
+        .main-footer { 
+            background: #00153d !important; 
+            color: #f0f0f0 !important; 
+            padding: 80px 5% 40px !important; 
+            width: 100% !important;
+            display: block !important;
+            clear: both;
+        }
 
         @media (max-width: 768px) {
-            .carousel-caption h1 { font-size: 2.2rem; }
-            .carousel-item { height: 35vh; }
+            .hero h1 { font-size: 2.2rem; }
             nav { padding: 10px 15px; }
+            nav ul { gap: 10px; }
+            nav ul li a { font-size: 0.7rem; }
             .img-wrapper { height: 220px; }
+            .main-footer { padding: 50px 20px 30px !important; }
         }
     </style>
 </head>
@@ -80,39 +97,9 @@
         </ul>
     </nav>
 
-    {% if request.path == '/' %}
-    <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            {% for slide in sliders %}
-            <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                {% if slide.image %}
-                    <img src="{{ slide.image.url }}" class="d-block w-100" alt="{{ slide.title }}">
-                {% endif %}
-                <div class="carousel-caption">
-                    <h1>{{ slide.title }}</h1>
-                    <p>{{ slide.subtitle }}</p>
-                    {% if slide.link %}
-                        <a href="{{ slide.link }}" class="btn btn-success px-4 py-2 mt-2">SHOP NOW</a>
-                    {% endif %}
-                </div>
-            </div>
-            {% empty %}
-            <div class="carousel-item active">
-                <div class="carousel-caption" style="position: static; padding: 100px 0;">
-                    <h1>JUSA & CHACHA</h1>
-                    <p>PREMIUM EXPORT QUALITY WEAR</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% if sliders.count > 1 %}
-        <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-        {% endif %}
+    <div class="hero">
+        <h1>JUSA & CHACHA</h1>
+        <p>PREMIUM EXPORT QUALITY WEAR</p>
     </div>
 
     <div class="trust-badges">
@@ -142,10 +129,8 @@
             </div>
         </div>
     </div>
-    {% endif %}
 
     <div class="container my-4">
-        {% block content %}
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
             {% for p in products %}
             <div class="col">
@@ -154,12 +139,19 @@
                         <span class="badge bg-danger position-absolute top-0 end-0 m-2" style="font-size: 0.6rem; z-index: 5;">SALE</span>
                     {% endif %}
                     
+                    {% if p.stock > 0 and p.stock <= 5 %}
+                        <div class="position-absolute top-0 start-0 m-2 badge bg-warning text-dark" style="font-size: 0.5rem; z-index: 5;">ONLY {{ p.stock }} LEFT</div>
+                    {% endif %}
+
                     <a href="{% url 'product_detail' p.pk %}" class="text-decoration-none text-dark">
                         <div class="img-wrapper">
                             {% if p.image %}
                                 <img src="{{ p.image.url }}" alt="{{ p.name }}" class="product-img">
+                            {% else %}
+                                <div class="h-100 bg-light d-flex align-items-center justify-content-center text-muted">No Image</div>
                             {% endif %}
                         </div>
+                        
                         <div class="details">
                             <h3>{{ p.name }}</h3>
                             <div class="mb-2">
@@ -170,36 +162,87 @@
                                     <span class="current-price">RS. {{ p.price }}</span>
                                 {% endif %}
                             </div>
-                            <span class="btn-buy">VIEW & BUY</span>
+
+                            {% if p.stock == 0 %}
+                                <button class="btn btn-light w-100 btn-sm disabled" style="font-size:0.7rem;">SOLD OUT</button>
+                            {% else %}
+                                <button type="button" class="btn btn-outline-secondary w-100 my-2 btn-size-guide" data-bs-toggle="modal" data-bs-target="#sizeGuideModal">
+                                    📏 SIZE GUIDE
+                                </button>
+                                <span class="btn-buy">VIEW & BUY</span>
+                            {% endif %}
                         </div>
                     </a>
                 </div>
             </div>
+            {% empty %}
+            <div class="col-12 text-center py-5 opacity-50">
+                <h3>No items found.</h3>
+            </div>
             {% endfor %}
         </div>
-        {% endblock %}
+    </div>
+
+    <div class="reviews-section">
+        <h2 class="mb-5" style="font-weight: 800;">Trusted by 1000+ Customers</h2>
+        <div class="d-flex justify-content-center gap-4 flex-wrap">
+            <div class="review-card">
+                <div class="text-warning mb-2">★★★★★</div>
+                <p class="small">"The fabric quality is exactly like high-end brands. Highly impressed!"</p>
+                <h6 class="mt-3 text-success">- Omar Khalid, Islamabad</h6>
+            </div>
+            <div class="review-card">
+                <div class="text-warning mb-2">★★★★★</div>
+                <p class="small">"Fastest delivery I've ever experienced in Pakistan. Highly recommended."</p>
+                <h6 class="mt-3 text-success">- Sara Ahmed, Lahore</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="sizeGuideModalLabel">📏 Official Size Guide</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>Please check your measurements before ordering.</p>
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr><th>Size</th><th>Chest (in)</th><th>Length (in)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>S</td><td>19</td><td>27</td></tr>
+                    <tr><td>M</td><td>20</td><td>28</td></tr>
+                    <tr><td>L</td><td>21</td><td>29</td></tr>
+                    <tr><td>XL</td><td>22</td><td>30</td></tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer class="main-footer">
         <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: left; padding: 0 20px;">
-            <div>
-                <h3 style="color: white; margin-bottom: 20px; font-weight: 800;">JUSA & CHACHA</h3>
-                <p style="font-size: 0.9rem; opacity: 0.8;">Pakistan's fastest growing premium clothing brand.</p>
-                <div style="margin-top: 15px;">
-                    {% if brand.instagram_url %}<a href="{{ brand.instagram_url }}" style="color:white; margin-right:15px; text-decoration:none;">Instagram</a>{% endif %}
-                    {% if brand.facebook_url %}<a href="{{ brand.facebook_url }}" style="color:white; text-decoration:none;">Facebook</a>{% endif %}
-                </div>
+            <div style="padding-right: 20px;">
+                <h3 style="color: white; margin-bottom: 20px; font-weight: 800; letter-spacing: 1px;">JUSA & CHACHA</h3>
+                <p style="font-size: 0.9rem; line-height: 1.8; opacity: 0.8; color: #ddd;">
+                    Pakistan's fastest growing premium clothing brand. We believe in quality that speaks for itself. 
+                </p>
             </div>
             <div>
-                <h4 style="color: white; margin-bottom: 20px; font-weight: 600;">Contact Us</h4>
-                <div style="font-size: 0.9rem; opacity: 0.8;">
-                    <p>📧 jusaandchacha@gmail.com</p>
-                    <p>📞 +92 310 5631656</p>
+                <h4 style="color: white; margin-bottom: 20px; font-weight: 600;">Customer Support</h4>
+                <div style="font-size: 0.9rem; line-height: 2; opacity: 0.8; color: #ddd;">
+                    <p>📧 Email: jusaandchacha@gmail.com</p>
+                    <p>📞 Phone: +92 310 5631656</p>
+                    <p>📍 Location: Islamabad, Pakistan</p>
                 </div>
             </div>
         </div>
-        <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px; padding-top: 25px; text-align: center;">
-            &copy; 2026 JUSA & CHACHA | Crafted by Arman Khan
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px; padding-top: 25px; font-size: 0.85rem; color: #777; text-align: center; letter-spacing: 0.5px;">
+            &copy; 2026 "JUSA & CHACHA" BRAND. Proudly Crafted by "Arman Khan".
         </div>
     </footer>
 
