@@ -164,3 +164,8 @@ JAZZMIN_UI_TWEAKS = {
         "danger": "btn-danger", "success": "btn-success"
     }
 }
+
+# --- NAYA: LOGIN/LOGOUT REDIRECTS ---
+# Ye user ko login ya signup ke baad seedha home page par bhej denge
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

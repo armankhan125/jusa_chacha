@@ -1,0 +1,18 @@
+{% extends "shop/index.html" %}
+
+{% block content %}
+<div class="container my-5 py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-sm border-0 p-4">
+                <h2 class="text-center mb-4" style="color: #002366; font-weight: 800;">CREATE ACCOUNT</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success w-100 py-2 mt-3" style="background: #25D366; border: none; font-weight: 600;">REGISTER NOW</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

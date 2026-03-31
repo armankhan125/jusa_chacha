@@ -80,6 +80,7 @@
         </ul>
     </nav>
 
+    {% if request.path == '/' %}
     <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             {% for slide in sliders %}
@@ -141,8 +142,10 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
     <div class="container my-4">
+        {% block content %}
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
             {% for p in products %}
             <div class="col">
@@ -174,6 +177,7 @@
             </div>
             {% endfor %}
         </div>
+        {% endblock %}
     </div>
 
     <footer class="main-footer">

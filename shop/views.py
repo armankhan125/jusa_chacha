@@ -6,6 +6,10 @@ from .models import (
 from django.contrib import messages
 import urllib.parse
 
+# --- NAYE IMPORTS (Auth ke liye) ---
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
 # --- 1. ADMIN STATS (Waisa hi hai) ---
 def admin_dashboard_stats(request):
     return {
@@ -15,10 +19,10 @@ def admin_dashboard_stats(request):
         "total_reviews": Review.objects.count(),
     }
 
-# --- 2. PRODUCT LIST (Aapka logic + Sirf Sliders fetch kiye) ---
+# --- 2. PRODUCT LIST (Aapka original logic) ---
 def product_list(request):
     categories = Category.objects.all() 
-    sliders = HomeSlider.objects.filter(is_active=True) # Naya data
+    sliders = HomeSlider.objects.filter(is_active=True)
     
     query = request.GET.get('search')
     cat_id = request.GET.get('category')
@@ -41,7 +45,7 @@ def product_list(request):
     return render(request, 'shop/index.html', {
         'products': products, 
         'categories': categories,
-        'sliders': sliders, # Sirf list mein add kiya
+        'sliders': sliders,
         'current_category': cat_id,
         'current_sort': sort_option
     })
@@ -50,7 +54,7 @@ def product_list(request):
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     gallery = product.images.all() 
-    colors = product.colors.all() # Naya data
+    colors = product.colors.all()
     reviews = product.reviews.all().order_by('-created_at')
     related_products = Product.objects.filter(category=product.category).exclude(pk=pk)[:4]
     
@@ -101,7 +105,6 @@ def product_detail(request, pk):
             )
             
             encoded_msg = urllib.parse.quote(whatsapp_msg)
-            # Aapka number waisa hi rakha hai
             whatsapp_url = f"https://wa.me/923105631656?text={encoded_msg}"
             return redirect(whatsapp_url)
 
@@ -123,7 +126,7 @@ def product_detail(request, pk):
     return render(request, 'shop/detail.html', {
         'product': product,
         'gallery': gallery,
-        'colors': colors, # Sirf extra add kiya
+        'colors': colors,
         'reviews': reviews,
         'related_products': related_products 
     })
@@ -132,7 +135,7 @@ def product_detail(request, pk):
 def about(request):
     return render(request, 'shop/about.html')
 
-# --- 5. NAYA FUNCTION (Alag se newsletter ke liye) ---
+# --- 5. NEWSLETTER (Waisa hi hai) ---
 def newsletter_subscribe(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -140,3 +143,16 @@ def newsletter_subscribe(request):
             Newsletter.objects.get_or_create(email=email)
             messages.success(request, "Subscribed successfully!")
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+# --- 6. NAYA: SIGNUP VIEW (Sirf ye add kiya hai) ---
+def signup_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user) # Register hote hi login ho jayega
+            messages.success(request, f"Welcome to JUSA & CHACHA, {user.username}!")
+            return redirect('product_list')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
